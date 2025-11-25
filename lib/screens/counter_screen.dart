@@ -26,11 +26,25 @@ class CounterScreen extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: ()  {
-                context.read<CounterCubit>().increment();
-              },
-              child: Text("Tap"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    context.read<CounterCubit>().increment();
+                  },
+                  child: Text("Increment"),
+                ),
+
+                SizedBox(width: 16),
+
+                ElevatedButton(
+                  onPressed: () {
+                    context.read<CounterCubit>().decrement();
+                  },
+                  child: Text("Decrement"),
+                ),
+              ],
             ),
           ],
         ),
