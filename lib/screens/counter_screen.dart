@@ -8,44 +8,39 @@ class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Counter with Cubit")),
+      appBar: AppBar(title: Text("Counter Screen")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             BlocBuilder<CounterCubit, int>(
-              builder: (context, counterCubit) {
+              builder: (context, number) {
                 return Text(
-                  "Count: $counterCubit",
+                  "$number",
                   style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black,
+                    fontSize: 48,
                   ),
                 );
               },
             ),
-            SizedBox(height: 16),
+
+            SizedBox(height: 16,),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<CounterCubit>().increment();
-                  },
-                  child: Text("Increment"),
-                ),
-
-                SizedBox(width: 16),
-
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<CounterCubit>().decrement();
-                  },
-                  child: Text("Decrement"),
-                ),
+                FloatingActionButton(onPressed: (){
+                  context.read<CounterCubit>().increase();
+                }, child: Icon(Icons.add),),
+                SizedBox(width: 16,),
+                FloatingActionButton(onPressed: (){
+                  context.read<CounterCubit>().decrease();
+                }, child: Icon(Icons.remove),),
               ],
-            ),
+            )
           ],
         ),
       ),
