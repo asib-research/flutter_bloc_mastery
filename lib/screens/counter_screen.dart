@@ -37,6 +37,10 @@ class CounterScreen extends StatelessWidget {
                 }, child: Icon(Icons.add),),
                 SizedBox(width: 16,),
                 FloatingActionButton(onPressed: (){
+                  context.read<CounterCubit>().reset();
+                }, child: Icon(Icons.refresh),),
+                SizedBox(width: 16,),
+                FloatingActionButton(onPressed: (){
                   context.read<CounterCubit>().decrease();
                 }, child: Icon(Icons.remove),),
               ],
