@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_mastery/features/bloc/counter_with_bloc/screens/bloc_counter_screen.dart';
 import 'package:flutter_bloc_mastery/features/fruites/presentations/screens/fruits_screen.dart';
 import 'package:flutter_bloc_mastery/screens/counter_screen.dart';
 import 'package:flutter_bloc_mastery/screens/items_screen.dart';
@@ -39,6 +40,10 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=> FruitsScreen()));
             }, child: Text("Fruits Screen")),
+
+         ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocCounterScreen()));
+            }, child: Text("Bloc Counter Screen")),
 
           ],
         ),

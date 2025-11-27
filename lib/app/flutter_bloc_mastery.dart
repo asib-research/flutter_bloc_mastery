@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_mastery/cubits/counter_cubit.dart';
 import 'package:flutter_bloc_mastery/cubits/profile_cubit.dart';
 import 'package:flutter_bloc_mastery/cubits/toggle_cubit.dart';
+import 'package:flutter_bloc_mastery/features/bloc/counter_with_bloc/blocs/counter_bloc.dart';
 import 'package:flutter_bloc_mastery/screens/home_screen.dart';
 import 'package:flutter_bloc_mastery/cubits/items_cubit.dart';
 
@@ -16,6 +17,7 @@ class FlutterBlocMastery extends StatelessWidget {
       BlocProvider(create: (_)=> ProfileCubit()),
       BlocProvider(create: (_)=> ToggleCubit()),
       BlocProvider(create: (_)=> ItemsCubit()..fetchItems()),
+      BlocProvider(create: (_)=> CounterBloc()),
     ], child: MaterialApp(
       home: HomeScreen(),
     ));
