@@ -36,6 +36,7 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton(
+                  heroTag: null,
                   onPressed: () {
                     context.read<ProfileCubit>().setName(name: "Samy");
                   },
@@ -43,6 +44,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 16),
                 FloatingActionButton(
+                  heroTag: null,
                   onPressed: () {
                     context.read<ProfileCubit>().haveBirthday();
                   },
