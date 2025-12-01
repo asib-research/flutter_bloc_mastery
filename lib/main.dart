@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'app/flutter_bloc_mastery.dart';
+import 'app/flutter_streams_app.dart';
 
 void main() {
-  runApp(FlutterBlocMastery());
+  runApp(FlutterStreamsApp());
 }
