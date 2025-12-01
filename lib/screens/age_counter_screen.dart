@@ -10,78 +10,82 @@ class AgeCounterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Age Counter")),
-      body: Column(
-        children: [
-          BlocBuilder<AgeCounterBloc, int>(
-            builder: (context, state) {
-              return Text(
-                "Count: $state",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: Colors.black,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocBuilder<AgeCounterBloc, int>(
+              builder: (context, state) {
+                return Text(
+                  "Count: $state",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                );
+              },
+            ),
+
+            BlocListener<AgeCounterBloc, int>(
+              listener: (context, state) {
+                if (state == 5) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("We find the 5 years old person")),
+                  );
+                }
+              },
+              child: SizedBox.shrink(),
+            ),
+
+            BlocConsumer<AgeCounterBloc, int>(
+              builder: (context, state) {
+                return Text(
+                  "Count Value: ${context.watch<AgeCounterBloc>().state}",
+                );
+              },
+              listener: (context, state) {
+                if (state == 10) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("We find the 10 years old person")),
+                  );
+                }
+              },
+            ),
+
+            Text("Bloc State Count: ${context.watch<AgeCounterBloc>().state}"),
+
+            SizedBox(height: 24),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    context.read<AgeCounterBloc>().add(
+                      AgeCounterIncrementEvent(),
+                    );
+                  },
+                  icon: Icon(Icons.add),
                 ),
-              );
-            },
-          ),
-
-          BlocListener<AgeCounterBloc, int>(
-            listener: (context, state) {
-              if (state == 5) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("We find the 5 years old person")),
-                );
-              }
-            },
-            child: SizedBox.shrink(),
-          ),
-
-          BlocConsumer<AgeCounterBloc, int>(
-            builder: (context, state) {
-              return Text(
-                "Count Value: ${context.watch<AgeCounterBloc>().state}",
-              );
-            },
-            listener: (context, state) {
-              if (state == 10) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("We find the 10 years old person")),
-                );
-              }
-            },
-          ),
-
-          Text("Bloc State Count: ${context.watch<AgeCounterBloc>().state}"),
-
-          SizedBox(height: 24),
-
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  context.read<AgeCounterBloc>().add(
-                    AgeCounterIncrementEvent(),
-                  );
-                },
-                icon: Icon(Icons.add),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<AgeCounterBloc>().add(AgeCounterResetEvent());
-                },
-                icon: Icon(Icons.refresh),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<AgeCounterBloc>().add(
-                    AgeCounterDecrementEvent(),
-                  );
-                },
-                icon: Icon(Icons.remove),
-              ),
-            ],
-          ),
-        ],
+                IconButton(
+                  onPressed: () {
+                    context.read<AgeCounterBloc>().add(AgeCounterResetEvent());
+                  },
+                  icon: Icon(Icons.refresh),
+                ),
+                IconButton(
+                  onPressed: () {
+                    context.read<AgeCounterBloc>().add(
+                      AgeCounterDecrementEvent(),
+                    );
+                  },
+                  icon: Icon(Icons.remove),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
