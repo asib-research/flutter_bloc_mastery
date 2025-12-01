@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AppBlocObservers extends BlocObserver{
-
+class AppBlocObservation extends BlocObserver{
   @override
   void onTransition(Bloc<dynamic, dynamic> bloc, Transition<dynamic, dynamic> transition) {
     super.onTransition(bloc, transition);
@@ -10,7 +9,6 @@ class AppBlocObservers extends BlocObserver{
     print("Current State: ${transition.currentState}");
     print("Event: ${transition.event}");
     print("Next State: ${transition.nextState}");
-    print("=================");
+    print("===================================");
   }
-
 }
